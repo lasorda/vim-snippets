@@ -311,3 +311,89 @@ snippet newHD "活动模板，包括常用的函数和接口"
 	{
 		FSetUser(uid, "${1:easy_fabao_key}", 0);
 	}
+
+snippet forr "foreachMap" b
+	foreach(${1:int k}, ${2:mixed v} in ${3:data})
+	{
+
+	}
+
+
+snippet geto "getItemFormPackage" w
+	OBJECT_MGR->get_item_count(uid, USER_PROP_BAG, ${1:ID});
+
+
+snippet rpcc "RPC function" b
+	RPC_MGR->send_to_user(uid, ${1:PROT}, ${2:ret});
+
+
+snippet ho "object headerfile" b
+	#include "/object/object.h"
+
+
+snippet gcounter "get counter" w
+	COUNTER_MGR->get_counter(uid, ${1:COUNTER_DAY} , ${2:DATA})
+
+
+snippet scounter "set counter" b
+	COUNTER_MGR->set_counter(uid, ${1:COUNTER_DAY}, ${2:DATA}, 1);
+
+
+snippet s2t "YYYY-MM-DD hh:mm:ss->QC_TIME()" w
+	MODULE->time_atoi(${1:STR_TIME});
+
+
+snippet t2s "timestamp -> str time" w
+	MODULE->strdaytime(${1:QC_TIME()})
+
+
+snippet rwdo "get rwd item info" w
+	REWARD_MGR->pack_client_reward(REWARD_MGR->get_reward_data(uid, ${1:reward_id}))["item"\];
+	/*items[0]["id"]*/
+	/*items[0]["amount"]*/
+
+
+snippet delo "delete item in bag" b
+	OBJ_MGR->delete_item_by_id(uid, USER_PROP_BAG, ${1:OBJ}, ${2:NUM});
+
+
+snippet LOG "LOG FORMAT" b
+	#define INFO(x) log_file("${1:name}", sprintf("[INFO\] [%s\] %s %d %s %s\n", short_time(), __FILE__, __LINE__, __FUNC__, x))
+	#define ERROR(x) log_file("${1:name}", sprintf("[ERROR\] [%s\] %s %d %s %s\n", short_time(), __FILE__, __LINE__, __FUNC__, x))
+
+
+snippet paycb "call back fucntion of payment" b
+	void pay_xianyu_succ(int uid, int value, ${1:int item_id})
+	{
+
+	}
+	void pay_xianyu_fail(int uid, int value, mixed arg...)
+	{
+
+	}
+
+
+snippet payy "pay code pattern" b
+	PAY->pay_xianyu(uid,${1:num}, ({${2:cb_args}}), "${1:an21_xhl}");
+
+
+
+snippet rego "regsiter object event" b
+	OBJ_MGR->reg_event_handler(${1:"event_post_add_item"}, ${2:"cal_hdl_answer"});
+
+
+
+snippet today
+	Today is the `date +%d.%m.%y`.
+
+snippet kk "Description" b
+	public readonly ${1/^_(.*)/$1/}: Event<$2> = this.$1.event
+
+snippet daycounter "day once pattern" b
+	if(!COUNTER_MGR->get_counter(uid, COUNTER_DAY , "${1:key}"))
+	{
+		COUNTER_MGR->set_counter(uid, COUNTER_DAY, "${1:key}", 1);
+		$2
+	}
+
+
